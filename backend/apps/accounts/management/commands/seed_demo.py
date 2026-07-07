@@ -56,22 +56,23 @@ class Command(BaseCommand):
         OrganizationMember.objects.get_or_create(organization=org, user=admin, defaults={"org_role": "owner"})
 
         ai_dept = Department.objects.get(slug="ai")
-        team, _ = Team.objects.get_or_create(
-            slug="ai-core",
-            defaults={"name": "AI Core Team", "department": ai_dept, "lead": admin},
-        )
-        team.members.add(admin)
 
         project, _ = Project.objects.get_or_create(
             slug="autonomous-rover",
             defaults={
                 "title": "Autonomous Rover",
                 "description": "Build an autonomous navigation rover using computer vision.",
-                "owner": admin, "team": team, "department": ai_dept,
+                "owner": admin, "department": ai_dept,
                 "status": "active", "health": "on_track", "completion_percentage": 35,
             },
         )
         project.members.add(admin)
+
+        team, _ = Team.objects.get_or_create(
+            slug="ai-core",
+            defaults={"name": "AI Core Team", "project": project, "lead": admin},
+        )
+        team.members.add(admin)
 
         Task.objects.get_or_create(
             title="Setup ROS2 environment",

@@ -297,29 +297,37 @@ export default function ProjectsPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {projects.map((project) => (
-              <Card key={project.id}>
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-semibold">{project.title}</h3>
-                  <span className="text-xs capitalize px-2 py-0.5 rounded-full bg-primary/15 text-primary">
-                    {project.status.replace("_", " ")}
-                  </span>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted">Progress</span>
-                    <span>{project.completion_percentage}%</span>
+              <div
+                key={project.id}
+                onClick={() => setSelectedProjectSlug(project.slug)}
+                className="cursor-pointer"
+              >
+                <Card className="hover:border-primary/50 hover:shadow-md transition-all h-full">
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="font-semibold text-white group-hover:text-primary transition-colors">{project.title}</h3>
+                    <span className="text-xs capitalize px-2 py-0.5 rounded-full bg-primary/15 text-primary">
+                      {project.status ? project.status.replace("_", " ") : "planning"}
+                    </span>
                   </div>
-                  <div className="h-2 rounded-full bg-card-border overflow-hidden">
-                    <div
-                      className="h-full bg-primary rounded-full transition-all"
-                      style={{ width: `${project.completion_percentage}%` }}
-                    />
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted">Progress</span>
+                      <span>{project.completion_percentage}%</span>
+                    </div>
+                    <div className="h-2 rounded-full bg-card-border overflow-hidden">
+                      <div
+                        className="h-full bg-primary rounded-full transition-all"
+                        style={{ width: `${project.completion_percentage}%` }}
+                      />
+                    </div>
+                    {project.health && (
+                      <p className={cn("text-xs capitalize font-semibold", healthColors[project.health] || "text-muted")}>
+                        {project.health.replace("_", " ")}
+                      </p>
+                    )}
                   </div>
-                  <p className={cn("text-xs capitalize", healthColors[project.health])}>
-                    {project.health.replace("_", " ")}
-                  </p>
-                </div>
-              </Card>
+                </Card>
+              </div>
             ))}
           </div>
         )}
@@ -415,12 +423,16 @@ export default function ProjectsPage() {
                     <div className="flex justify-between items-start">
                       <div>
                         <h2 className="text-2xl font-black text-white">{projectDetail.title}</h2>
-                        <span className="inline-block mt-2 px-2.5 py-0.5 rounded-full border text-xs capitalize font-medium mr-2" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-                          {projectDetail.status.replace("_", " ")}
-                        </span>
-                        <span className={cn("px-2.5 py-0.5 rounded-full border text-xs capitalize", healthColors[projectDetail.health])}>
-                          {projectDetail.health.replace("_", " ")}
-                        </span>
+                        {projectDetail.status && (
+                          <span className="inline-block mt-2 px-2.5 py-0.5 rounded-full border text-xs capitalize font-medium mr-2" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
+                            {projectDetail.status.replace("_", " ")}
+                          </span>
+                        )}
+                        {projectDetail.health && (
+                          <span className={cn("px-2.5 py-0.5 rounded-full border text-xs capitalize", healthColors[projectDetail.health] || "text-muted")}>
+                            {projectDetail.health.replace("_", " ")}
+                          </span>
+                        )}
                       </div>
                       <div className="text-right">
                         <p className="text-xs text-muted">Project Leader</p>
