@@ -176,6 +176,8 @@ export const projectsApi = {
     apiFetch<any>(`/projects/${slug}/`),
   create: (data: Partial<Project>) =>
     apiFetch<Project>("/projects/", { method: "POST", body: JSON.stringify(data) }),
+  delete: (slug: string) =>
+    apiFetch<void>(`/projects/${slug}/`, { method: "DELETE" }),
 };
 export const departmentsApi = {
   list: () => list<Department>("/departments/"),

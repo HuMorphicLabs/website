@@ -1,15 +1,29 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { TopBar } from "@/components/layout/sidebar";
 import { Card } from "@/components/ui/card";
-import { projectsApi } from "@/lib/api";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { projectsApi, getStoredUser, apiFetch, membersApi, projectPhasesApi, subStagesApi, subLevelsApi } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import { X, Plus, CheckCircle2, Circle, Trash2 } from "lucide-react";
 
 const healthColors: Record<string, string> = {
   on_track: "text-success",
   at_risk: "text-warning",
   off_track: "text-danger",
+};
+
+const slugify = (text: string) => {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-");
 };
 
 const LinkedTasks = ({ tasks }: { tasks?: any[] }) => {
@@ -56,7 +70,7 @@ export default function ProjectsPage() {
   const [phaseError, setPhaseError] = useState<string | null>(null);
 
   // Queries
-  const { data: projects = [], isLoading: isProjectsLoading } = useQuery({
+  const { data: projects = [], isLoading } = useQuery({
     queryKey: ["projects"],
     queryFn: projectsApi.list,
   });
@@ -71,6 +85,58 @@ export default function ProjectsPage() {
     queryFn: () => projectsApi.get(selectedProjectSlug!),
     enabled: !!selectedProjectSlug,
   });
+
+  const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+  const [assignType, setAssignType] = useState<"member" | "team" | "department">("member");
+  const [taskForm, setTaskForm] = useState({
+    title: "",
+    description: "",
+    priority: "medium",
+    assignee: "",
+    assigned_team: "",
+    assigned_department: "",
+    project: "",
+    linked_phase: "",
+    linked_sub_stage: "",
+    linked_sub_level: "",
+  });
+
+  const { data: teams = [] } = useQuery({
+    queryKey: ["teams"],
+    queryFn: () => apiFetch<any[]>("/teams/"),
+  });
+
+  const { data: departments = [] } = useQuery({
+    queryKey: ["departments"],
+    queryFn: () => apiFetch<any[]>("/departments/"),
+  });
+
+  const createTaskMutation = useMutation({
+    mutationFn: (data: any) => apiFetch("/tasks/", { method: "POST", body: JSON.stringify(data) }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["project", selectedProjectSlug] });
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+      setIsTaskModalOpen(false);
+    },
+  });
+
+  const openTaskModal = (params: { linked_phase?: string; linked_sub_stage?: string; linked_sub_level?: string }) => {
+    if (!projectDetail) return;
+    setTaskForm({
+      title: "",
+      description: "",
+      priority: "medium",
+      assignee: "",
+      assigned_team: "",
+      assigned_department: "",
+      project: String(projectDetail.id),
+      linked_phase: params.linked_phase || "",
+      linked_sub_stage: params.linked_sub_stage || "",
+      linked_sub_level: params.linked_sub_level || "",
+    });
+    setAssignType("member");
+    setIsTaskModalOpen(true);
+  };
 
   // Project Mutations
   const createProjectMutation = useMutation({
