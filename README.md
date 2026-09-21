@@ -103,3 +103,4 @@ See `.env.example` for all options including `GOOGLE_CLIENT_ID`, `OPENAI_API_KEY
 ## Tech Stack
 
 Next.js · TypeScript · Tailwind · Django · DRF · PostgreSQL · Redis · Celery · MinIO
+# website
