@@ -42,7 +42,7 @@ class Command(BaseCommand):
             defaults={"username": "president", "first_name": "Club", "last_name": "President"},
         )
         if not admin.has_usable_password():
-            admin.set_password("Demo@12345")
+            admin.set_password("Demo@12345") 
         president_role = Role.objects.filter(slug="president").first()
         if president_role:
             admin.role = president_role

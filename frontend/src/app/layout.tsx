@@ -15,8 +15,33 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HumorphicOS",
-  description: "AI-powered operating system for robotics clubs",
+  title: "HumorphicOS — The Operating System for Robotics Teams",
+  description:
+    "HumorphicOS is an AI-powered operating system for robotics clubs, engineering teams and research labs. Manage projects, hardware, people, labs and AI operations in one platform.",
+  keywords: [
+    "robotics operating system",
+    "robotics club management",
+    "hardware lab management",
+    "ROS2 sprint management",
+    "engineering WBS",
+    "robotics inventory",
+    "AI robotics copilot",
+  ],
+  authors: [{ name: "HumorphicOS Core Team" }],
+  openGraph: {
+    title: "HumorphicOS — The Operating System for Robotics Teams",
+    description:
+      "Plan projects. Track hardware. Automate operations. Let AI handle repetitive work while your team builds the future.",
+    type: "website",
+    locale: "en_US",
+    siteName: "HumorphicOS",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HumorphicOS — The Operating System for Robotics Teams",
+    description:
+      "AI-powered operating system for robotics clubs, engineering teams, and research labs.",
+  },
   manifest: "/manifest.json",
   appleWebApp: { capable: true, title: "HumorphicOS" },
 };
@@ -29,7 +54,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      data-theme="dark"
       suppressHydrationWarning
     >
       <head>
@@ -37,14 +63,13 @@ export default function RootLayout({
           {`
             (function() {
               try {
-                const savedTheme = localStorage.getItem('theme') || 'dark';
-                document.documentElement.setAttribute('data-theme', savedTheme);
+                document.documentElement.setAttribute('data-theme', 'dark');
               } catch (e) {}
             })();
           `}
         </Script>
       </head>
-      <body className="min-h-full">
+      <body className="min-h-full bg-[#030712] text-white">
         <Providers>{children}</Providers>
       </body>
     </html>
