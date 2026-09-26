@@ -14,6 +14,7 @@ import { cn, slugify } from "@/lib/utils";
 import { authApi, getStoredUser, setStoredTokens, setStoredUser } from "@/lib/api";
 import { canAccessNav } from "@/lib/permissions";
 import { ThemeToggle } from "@/components/theme-toggle";
+import HumorphicLogo from "@/components/HumorphicLogo";
 
 
 const navSections = [
@@ -102,13 +103,11 @@ export function Sidebar() {
   return (
     <aside className="fixed left-0 top-0 h-full w-64 border-r border-card-border bg-card flex flex-col z-20">
       <div className="p-4 border-b border-card-border">
-        <div className="flex items-center gap-2.5">
-          <div className="rounded-lg bg-primary p-2">
-            <Bot className="h-5 w-5 text-white" />
-          </div>
+        <div className="flex items-center gap-3">
+          <HumorphicLogo size={36} glow={true} />
           <div>
             <h1 className="font-bold text-sm">HumorphicOS</h1>
-            <p className="text-xs text-muted">Robotics Club Platform</p>
+            <p className="text-[11px] text-muted font-mono">Humorphic Labs</p>
           </div>
         </div>
       </div>

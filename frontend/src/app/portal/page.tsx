@@ -3,8 +3,9 @@
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { organizationsApi, eventsApi } from "@/lib/api";
-import { Bot, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import HumorphicLogo from "@/components/HumorphicLogo";
 
 export default function PublicPortalPage() {
   const { data: orgs } = useQuery({ queryKey: ["public-orgs"], queryFn: organizationsApi.public });
@@ -16,9 +17,12 @@ export default function PublicPortalPage() {
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-card-border px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="rounded-lg bg-primary p-2"><Bot className="h-5 w-5 text-white" /></div>
-          <span className="font-bold">HumorphicOS</span>
+        <div className="flex items-center gap-3">
+          <HumorphicLogo size={36} glow={true} />
+          <div className="flex flex-col">
+            <span className="font-bold text-base leading-tight">HumorphicOS</span>
+            <span className="text-[10px] text-muted font-mono tracking-wider uppercase">Humorphic Labs</span>
+          </div>
         </div>
         <Link href="/login"><Button size="sm">Sign In</Button></Link>
       </header>

@@ -43,6 +43,11 @@ export const metadata: Metadata = {
       "AI-powered operating system for robotics clubs, engineering teams, and research labs.",
   },
   manifest: "/manifest.json",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
   appleWebApp: { capable: true, title: "HumorphicOS" },
 };
 
@@ -54,8 +59,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
-      data-theme="dark"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
@@ -63,13 +67,21 @@ export default function RootLayout({
           {`
             (function() {
               try {
-                document.documentElement.setAttribute('data-theme', 'dark');
+                const savedTheme = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                if (savedTheme === 'light') {
+                  document.documentElement.classList.add('light');
+                  document.documentElement.classList.remove('dark');
+                } else {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.classList.remove('light');
+                }
               } catch (e) {}
             })();
           `}
         </Script>
       </head>
-      <body className="min-h-full bg-[#030712] text-white">
+      <body className="min-h-full bg-background text-foreground transition-colors duration-300">
         <Providers>{children}</Providers>
       </body>
     </html>

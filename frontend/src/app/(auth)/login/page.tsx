@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Bot } from "lucide-react";
+import HumorphicLogo from "@/components/HumorphicLogo";
 import { Button } from "@/components/ui/button";
 import { Input, Label } from "@/components/ui/input";
 import { GoogleSignIn } from "@/components/auth/google-sign-in";
@@ -62,10 +63,11 @@ export default function LoginPage() {
         {/* Top logo */}
         <div className="relative z-10 p-10">
           <div className="flex items-center gap-3">
-            <div className="inline-flex rounded-xl bg-primary p-2.5">
-              <Bot className="h-7 w-7 text-white" />
+            <HumorphicLogo size={42} glow={true} />
+            <div className="flex flex-col">
+              <span className="font-bold text-xl tracking-tight text-white">HumorphicOS</span>
+              <span className="text-[10px] text-slate-400 font-mono tracking-widest uppercase">Humorphic Labs</span>
             </div>
-            <span className="font-bold text-xl tracking-tight text-white">HumorphicOS</span>
           </div>
         </div>
 
@@ -89,11 +91,8 @@ export default function LoginPage() {
       {/* ── Right pane – form ── */}
       <main className="flex-1 flex items-center justify-center px-6 sm:px-12">
         <div className="w-full max-w-md">
-          {/* Mobile-only logo */}
-          <div className="flex lg:hidden items-center gap-2 mb-8">
-            <div className="inline-flex rounded-xl bg-primary p-2">
-              <Bot className="h-6 w-6 text-white" />
-            </div>
+          <div className="flex lg:hidden items-center gap-3 mb-8">
+            <HumorphicLogo size={36} glow={true} />
             <span className="font-bold text-lg tracking-tight">HumorphicOS</span>
           </div>
 

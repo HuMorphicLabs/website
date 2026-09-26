@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input, Label } from "@/components/ui/input";
 import { certificatesApi } from "@/lib/api";
+import HumorphicLogo from "@/components/HumorphicLogo";
 
 export default function VerifyCertificatePage() {
   const [code, setCode] = useState("");
@@ -31,9 +31,12 @@ export default function VerifyCertificatePage() {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b border-card-border px-6 py-4 flex items-center justify-between">
-        <Link href="/portal" className="flex items-center gap-2">
-          <div className="rounded-lg bg-primary p-2"><Bot className="h-5 w-5 text-white" /></div>
-          <span className="font-bold">HumorphicOS</span>
+        <Link href="/portal" className="flex items-center gap-3">
+          <HumorphicLogo size={36} glow={true} />
+          <div className="flex flex-col">
+            <span className="font-bold text-base leading-tight">HumorphicOS</span>
+            <span className="text-[10px] text-muted font-mono tracking-wider uppercase">Humorphic Labs</span>
+          </div>
         </Link>
         <Link href="/login"><Button size="sm" variant="secondary">Sign In</Button></Link>
       </header>

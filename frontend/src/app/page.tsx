@@ -25,7 +25,7 @@ import Footer from "@/components/landing/Footer";
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-[#030712] text-white selection:bg-cyan-500 selection:text-slate-950 font-sans relative">
+    <main className="min-h-screen bg-background text-foreground selection:bg-cyan-500 selection:text-slate-950 font-sans relative transition-colors duration-300">
       {/* Dynamic Navigation Header */}
       <Navbar />
 

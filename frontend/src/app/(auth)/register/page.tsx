@@ -4,6 +4,7 @@ import { useState, useRef, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Bot, Upload, Plus, CheckCircle2 } from "lucide-react";
+import HumorphicLogo from "@/components/HumorphicLogo";
 import { Button } from "@/components/ui/button";
 import { Input, Label } from "@/components/ui/input";
 import { GoogleSignIn } from "@/components/auth/google-sign-in";
@@ -139,8 +140,11 @@ export default function RegisterPage() {
 
         <div className="relative z-10 p-10">
           <div className="flex items-center gap-3">
-            <div className="inline-flex rounded-xl bg-primary p-2.5"><Bot className="h-7 w-7 text-white" /></div>
-            <span className="font-bold text-xl tracking-tight text-white">HumorphicOS</span>
+            <HumorphicLogo size={42} glow={true} />
+            <div className="flex flex-col">
+              <span className="font-bold text-xl tracking-tight text-white">HumorphicOS</span>
+              <span className="text-[10px] text-slate-400 font-mono tracking-widest uppercase">Humorphic Labs</span>
+            </div>
           </div>
         </div>
 
@@ -161,8 +165,8 @@ export default function RegisterPage() {
       <main className="flex-1 flex flex-col px-8 xl:px-14 py-7 overflow-hidden">
 
         {/* Mobile logo */}
-        <div className="flex lg:hidden items-center gap-2 mb-4 shrink-0">
-          <div className="inline-flex rounded-xl bg-primary p-2"><Bot className="h-5 w-5 text-white" /></div>
+        <div className="flex lg:hidden items-center gap-3 mb-4 shrink-0">
+          <HumorphicLogo size={36} glow={true} />
           <span className="font-bold text-base">HumorphicOS</span>
         </div>
 

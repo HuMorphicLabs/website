@@ -4,20 +4,29 @@ import React from "react";
 import Link from "next/link";
 import { Bot, ShieldCheck } from "lucide-react";
 
+import HumorphicLogo from "@/components/HumorphicLogo";
+
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-800/80 bg-[#02040b] text-slate-400 font-sans text-xs">
+    <footer className="relative bg-[#02040a] border-t border-slate-800/80 text-slate-400 font-mono text-xs overflow-hidden">
+      {/* Ambient glow accents */}
+      <div className="absolute top-0 left-1/4 w-96 h-28 bg-cyan-500/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-28 bg-purple-600/5 blur-3xl pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand Col */}
           <div className="col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center">
-                <Bot className="w-4 h-4 text-cyan-400" />
+            <Link href="/" className="flex items-center gap-3">
+              <HumorphicLogo size={36} glow={true} />
+              <div className="flex flex-col">
+                <span className="font-mono text-base font-black tracking-wider text-white">
+                  HUMORPHIC<span className="text-cyan-400">OS</span>
+                </span>
+                <span className="text-[9px] text-slate-500 uppercase tracking-widest -mt-0.5">
+                  Humorphic Labs
+                </span>
               </div>
-              <span className="font-mono text-base font-black tracking-wider text-white">
-                HUMORPHIC<span className="text-cyan-400">OS</span>
-              </span>
             </Link>
             <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
               The AI-powered operating system custom-engineered for university robotics clubs, collegiate engineering teams, and hardware research laboratories.
