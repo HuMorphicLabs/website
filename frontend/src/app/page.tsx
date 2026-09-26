@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 
 import React from "react";
-import dynamic from "next/dynamic";
 import Navbar from "@/components/landing/Navbar";
 import HeroSection from "@/components/landing/HeroSection";
 import MetricsStrip from "@/components/landing/MetricsStrip";
+import { RollingMarquee } from "@/components/ui/rolling-marquee";
 import ProblemSection from "@/components/landing/ProblemSection";
 import ProductSolutionSection from "@/components/landing/ProductSolutionSection";
 import ProjectEngineSection from "@/components/landing/ProjectEngineSection";
@@ -32,55 +32,58 @@ export default function LandingPage() {
       {/* 1. Hero with 3D Humanoid Robot & Hologram HUD */}
       <HeroSection />
 
-      {/* 2. Product Metrics Strip */}
+      {/* 2. Continuous Infinite Rolling Ticker */}
+      <RollingMarquee />
+
+      {/* 3. Product Metrics Strip */}
       <MetricsStrip />
 
-      {/* 3. The Problem: Robotics is Complex */}
+      {/* 4. The Problem: Robotics is Complex */}
       <ProblemSection />
 
-      {/* 4. Product Solution: 5 Major Pillars */}
+      {/* 5. Product Solution: 5 Major Pillars */}
       <ProductSolutionSection />
 
-      {/* 5. 4-Tier Project Management (WBS Engine) */}
+      {/* 6. 4-Tier Project Management (WBS Engine) */}
       <ProjectEngineSection />
 
-      {/* 6. Robotics-Aware Interactive Kanban Board */}
+      {/* 7. Robotics-Aware Interactive Kanban Board */}
       <KanbanSection />
 
-      {/* 7. Hardware Lab & Serialized Inventory */}
+      {/* 8. Hardware Lab & Serialized Inventory */}
       <HardwareLabSection />
 
-      {/* 8. Lab Booking & Real-Time Conflict Detection */}
+      {/* 9. Lab Booking & Real-Time Conflict Detection */}
       <LabBookingSection />
 
-      {/* 9. AI Copilot Interactive Terminal */}
+      {/* 10. AI Copilot Interactive Terminal */}
       <AICopilotSection />
 
-      {/* 10. Daily Operations & AI Pulse Timeline */}
+      {/* 11. Daily Operations & AI Pulse Timeline */}
       <DailyOperationsSection />
 
-      {/* 11. Multimodal Attendance & Verification */}
+      {/* 12. Multimodal Attendance & Verification */}
       <AttendanceSection />
 
-      {/* 12. Gamification, XP & Merit Badges */}
+      {/* 13. Gamification, XP & Merit Badges */}
       <GamificationSection />
 
-      {/* 13. Verifiable Digital Certificate Engine */}
+      {/* 14. Verifiable Digital Certificate Engine */}
       <CertificateSection />
 
-      {/* 14. Public Showcase: Active Robotics Systems */}
+      {/* 15. Public Showcase: Active Robotics Systems */}
       <PublicShowcaseSection />
 
-      {/* 15. Upcoming Events & Autonomous Hackathons */}
+      {/* 16. Upcoming Events & Autonomous Hackathons */}
       <EventsSection />
 
-      {/* 16. Distributed Enterprise Architecture */}
+      {/* 17. Distributed Enterprise Architecture */}
       <ArchitectureSection />
 
-      {/* 17. Security, 8-Tier RBAC & Governance */}
+      {/* 18. Security, 8-Tier RBAC & Governance */}
       <SecuritySection />
 
-      {/* 18. Cinematic Final 3D Robot CTA */}
+      {/* 19. Cinematic Final 3D Robot CTA */}
       <FinalCTASection />
 
       {/* Footer */}
