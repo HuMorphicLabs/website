@@ -25,7 +25,7 @@ class AnalyticsDashboardView(APIView):
         project_by_health = list(Project.objects.values("health").annotate(count=Count("id")))
         dept_stats = []
         for d in Department.objects.filter(is_active=True):
-            dept_stats.append({"name": d.name, "teams": d.teams.count(), "projects": d.projects.count()})
+            dept_stats.append({"name": d.name, "members": d.members.count(), "projects": d.projects.count()})
 
         members = User.objects.filter(is_active=True).count()
         updates_week = DailyUpdate.objects.filter(date__gte=week_start).count()
